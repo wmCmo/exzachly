@@ -1,39 +1,31 @@
-import Image from "next/image"
+import { QrCode, Timer} from "@phosphor-icons/react/dist/ssr";
 
 export default function Home() {
 
   const tools = [
     {
       name: "QR Code",
-      path: "/qr",
-      desc: "Generate your QR Code for free"
+      path: "/tools/qr",
+      desc: "Generate your QR Code for free",
+      file: <QrCode fill="#383838" weight="thin" className="dark:fill-neutral-500" size='5em'/>
     },
-    // {
-    //   name: "QR Code",
-    //   path: "/qr",
-    //   desc: "Generate your QR Code for free"
-    // },
-    // {
-    //   name: "QR Code",
-    //   path: "/qr",
-    //   desc: "Generate your QR Code for free"
-    // },
-    // {
-    //   name: "QR Code",
-    //   path: "/qr",
-    //   desc: "Generate your QR Code for free"
-    // }
+    {
+      name: "Pomodoro",
+      path: "/tools/tomato",
+      desc: "Your minimal Pomodoro Timer",
+      file: <Timer fill="#383838" weight="thin" className="dark:fill-neutral-500" size='5em'/>
+    },
   ]
   const mappedTools = tools.map((tool) => {
     return (
-      <a href={tool.path} key={tool.name}>
-        <div className="mt-8 p-5 flex items-center justify-around bg-neutral-800 rounded-lg">
-          <div className="col w-2/3">
+      <a href={tool.path} key={tool.name} className="text-neutral-600 dark:text-neutral-300">
+        <div className="mt-8 p-5 flex items-center justify-between bg-white dark:bg-neutral-800 rounded-lg">
+          <div className="col">
             <h4 className="text-xl font-bold">{tool.name}</h4>
-            <p>{tool.desc}</p>
+            <p className="dark:text-neutral-300">{tool.desc}</p>
           </div>
           <div className="col">
-            <Image src='/icons/qr-code.svg' alt={tool.name} width={84} height={84} />
+            {tool.file}
           </div>
         </div>
       </a>
