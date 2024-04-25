@@ -36,7 +36,7 @@ export default function Home() {
       <main className="mx-5">
         <h1 className="text-neutral-800 dark:text-neutral-200 mt-40 text-vw leading-none sm:text-8xl font-black">It&apos;s me, <span className="text-lime-500">Zach.</span></h1>
         <div className="my-10 p-6 bg-neutral-200 dark:bg-neutral-900 rounded-xl">
-          <h2 className="text-neutral-800 text-3xl font-semibold">Tools you might like</h2>
+          <h2 className="text-neutral-800 dark:text-neutral-200 text-3xl font-semibold">Tools you might like</h2>
           <div className="sm:grid grid-cols-2 gap-8 lg:grid-cols-3">
             {mappedTools}
           </div>
