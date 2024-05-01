@@ -1,4 +1,4 @@
-import { QrCode, Timer} from "@phosphor-icons/react/dist/ssr";
+import { QrCode, Timer } from "@phosphor-icons/react/dist/ssr";
 
 export default function Home() {
 
@@ -7,13 +7,13 @@ export default function Home() {
       name: "QR Code",
       path: "/tools/qr",
       desc: "Generate your QR Code for free",
-      file: <QrCode fill="#383838" weight="thin" className="dark:fill-neutral-500" size='5em'/>
+      file: <QrCode fill="#383838" weight="thin" className="dark:fill-neutral-500" size='5em' />
     },
     {
       name: "Pomodoro",
       path: "/tools/tomato",
       desc: "Your minimal Pomodoro Timer",
-      file: <Timer fill="#383838" weight="thin" className="dark:fill-neutral-500" size='5em'/>
+      file: <Timer fill="#383838" weight="thin" className="dark:fill-neutral-500" size='5em' />
     },
   ]
   const mappedTools = tools.map((tool) => {
@@ -33,14 +33,14 @@ export default function Home() {
   })
 
   return (
-      <main className="mx-5">
-        <h1 className="text-neutral-800 dark:text-neutral-200 mt-40 text-vw leading-none sm:text-8xl font-black">It&apos;s me, <span className="text-lime-500">Zach.</span></h1>
-        <div className="my-10 p-6 bg-neutral-200 dark:bg-neutral-900 rounded-xl">
-          <h2 className="text-neutral-800 dark:text-neutral-200 text-3xl font-semibold">Tools you might like</h2>
-          <div className="sm:grid grid-cols-2 gap-8 lg:grid-cols-3">
-            {mappedTools}
-          </div>
+    <main className="mx-5">
+      <h1 className="text-neutral-800 dark:text-neutral-200 mt-40 text-vw leading-none sm:text-8xl font-black">It&apos;s me, <span className="text-lime-500">Zach.</span></h1>
+      <div className="my-10 p-6 bg-neutral-200 dark:bg-neutral-900 rounded-xl">
+        <h2 className="text-neutral-800 dark:text-neutral-200 text-3xl font-semibold">Tools you might like</h2>
+        <div className="sm:grid grid-cols-2 gap-8 lg:grid-cols-3">
+          {mappedTools}
         </div>
-      </main>
+      </div>
+    </main>
   )
 }
