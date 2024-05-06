@@ -39,44 +39,38 @@ export default function Qr() {
     }
 
     return (
-        <main className="mx-5 h-3/4">
+        <main className="mx-5 h-3/4 text-neutral-800 dark:text-neutral-200">
             <h1 className="text-vw leading-none sm:text-7xl font-bold">Free QR Code Generator</h1>
-            <h4 className="text-xl my-4">Tired of paying for QR Code? This one is for you.</h4>
-            <div className="flex justify-center items-center h-4/6">
-                <div className="flex flex-col gap-1 md:flex-row items-center">
-                    <div className="rounded-lg flex justify-center dark:bg-neutral-200 p-4" id="qr-holder">
-
-                        <Image
-                            alt='QR Code display'
-                            text={qrForm.link}
-                            options={{
-                                type: 'image/jpeg',
-                                quality: 0.3,
-                                errorCorrectionLevel: 'M',
-                                margin: 3,
-                                scale: 4,
-                                width: 200,
-                                color: {
-                                    dark: "#171717",
-                                    light: "#ffffff"
-                                }
-                            }}
-                        />
-                    </div >
-                    <div>
-                        <input type="text" onChange={handleChange} name="link" value={qrForm.link}
-                            className="dark:bg-neutral-900 text-center p-4 rounded hover:rounded-lg md:h-min" />
-                        <div className="dark:bg-neutral-900 text-center p-4 rounded hover:rounded-lg md:h-min">
-
-                            <input type="text" onChange={handleChange} name="fileName" value={qrForm.fileName} className="bg-transparent text-right"></input>
-                            <span>.png</span>
-                        </div>
-                        <button type="submit" onClick={downloadQR}>Download</button>
+            <h4 className="text-xl my-4">Tired of paying for QR Codes? This one is for you.</h4>
+            <div className="flex flex-col gap-6 sm:flex-row items-center sm:mt-12 mt-0">
+                <div className="col rounded-lg flex justify-center bg-white p-1" id="qr-holder">
+                    <Image
+                        alt='QR Code display'
+                        text={qrForm.link}
+                        options={{
+                            type: 'image/jpeg',
+                            quality: 0.3,
+                            errorCorrectionLevel: 'M',
+                            margin: 3,
+                            scale: 4,
+                            width: 190,
+                            color: {
+                                dark: "#171717",
+                                light: "#ffffff"
+                            }
+                        }}
+                    />
+                </div >
+                <div className="col flex flex-col gap-4 item-end">
+                    <input type="text" onChange={handleChange} name="link" value={qrForm.link}
+                        className="bg-white dark:bg-neutral-700 text-center p-4 rounded-lg hover:rounded-lg w-30"/>
+                    <div className="bg-white dark:bg-neutral-700 text-center p-4 rounded-lg hover:rounded-lg flex w-30">
+                        <input type="text" onChange={handleChange} name="fileName" value={qrForm.fileName} className="bg-transparent text-right"></input>
+                        <span>.png</span>
                     </div>
-
+                    <button type="submit" onClick={downloadQR} className="bg-neutral-400 dark:bg-neutral-900 p-3 rounded-lg font-bold">Download</button>
                 </div>
             </div>
         </main>
     )
 }
-
