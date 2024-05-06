@@ -45,7 +45,6 @@ export default function Qr() {
             <div className="flex flex-col gap-6 sm:flex-row items-center sm:mt-12 mt-0">
                 <div className="col rounded-lg flex justify-center bg-white p-1" id="qr-holder">
                     <Image
-                        alt='QR Code display'
                         text={qrForm.link}
                         options={{
                             type: 'image/jpeg',
