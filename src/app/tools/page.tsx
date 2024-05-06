@@ -11,14 +11,14 @@ export default function Tools() {
         },
         {
             name: "Pomodoro",
-            path: "/tools/tomato",
+            path: "https://wmcmo.github.io/tomato/",
             desc: "Your minimal Pomodoro Timer",
             file: <Timer fill="#383838" weight="thin" className="dark:fill-neutral-500" size='5em' />
         },
     ]
     const mappedTools = tools.map((tool) => {
         return (
-            <Link href={tool.path} key={tool.name} className="text-neutral-600 dark:text-neutral-300">
+            <Link href={tool.path} key={tool.name} className="text-neutral-600 dark:text-neutral-300" target={tool.name === 'Pomodoro' ? '_blank' : ''}>
                 <div className="mt-8 p-5 flex items-center justify-between bg-white dark:bg-neutral-800 rounded-lg">
                     <div className="col">
                         <h4 className="text-xl font-bold">{tool.name}</h4>
