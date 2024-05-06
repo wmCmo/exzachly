@@ -42,7 +42,7 @@ export default function Qr() {
         <main className="mx-5 h-3/4 text-neutral-800 dark:text-neutral-200">
             <h1 className="text-vw leading-none sm:text-7xl font-bold">Free QR Code Generator</h1>
             <h4 className="text-xl my-4">Tired of paying for QR Codes? This one is for you.</h4>
-            <div className="flex flex-col gap-6 sm:flex-row items-center sm:mt-12 mt-0">
+            <div className="flex flex-col gap-6 sm:flex-row items-center sm:mt-12 mt-10">
                 <div className="col rounded-lg flex justify-center bg-white p-1" id="qr-holder">
                     <Image
                         text={qrForm.link}
@@ -52,7 +52,7 @@ export default function Qr() {
                             errorCorrectionLevel: 'M',
                             margin: 3,
                             scale: 4,
-                            width: 190,
+                            width: 400,
                             color: {
                                 dark: "#171717",
                                 light: "#ffffff"
