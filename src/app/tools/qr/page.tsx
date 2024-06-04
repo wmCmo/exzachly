@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 'use client'
 
 import { useQRCode } from "next-qrcode";
@@ -6,7 +7,9 @@ import { useState } from "react";
 export default function Qr() {
     const [qrForm, setQrForm] = useState({
         link: 'https://exzachly.notion.site',
-        fileName: 'image'
+        fileName: 'image',
+        bgc: "#ffffff",
+        fgc: "#171717"
     })
     const { Image } = useQRCode();
 
@@ -27,7 +30,6 @@ export default function Qr() {
                 }
             })
         }
-
     }
 
     const downloadQR = () => {
@@ -43,7 +45,7 @@ export default function Qr() {
             <h1 className="text-vw leading-none sm:text-7xl font-bold">Free QR Code Generator</h1>
             <h4 className="text-xl my-4">Tired of paying for QR Codes? This one is for you.</h4>
             <div className="flex flex-col gap-6 sm:flex-row items-center sm:mt-12 mt-10">
-                <div className="col rounded-lg flex justify-center bg-white p-1" id="qr-holder">
+                <div className="col rounded-lg flex justify-center p-1 min-h-60 min-w-60" id="qr-holder" style={{ background: qrForm.bgc }}>
                     <Image
                         text={qrForm.link}
                         options={{
@@ -54,20 +56,26 @@ export default function Qr() {
                             scale: 4,
                             width: 400,
                             color: {
-                                dark: "#171717",
-                                light: "#ffffff"
+                                dark: qrForm.fgc,
+                                light: qrForm.bgc
                             }
                         }}
                     />
                 </div >
                 <div className="col flex flex-col gap-4 item-end">
                     <input type="text" onChange={handleChange} name="link" value={qrForm.link}
-                        className="bg-white dark:bg-neutral-700 text-center p-4 rounded-lg hover:rounded-lg w-30"/>
+                        className="bg-white dark:bg-neutral-700 text-center p-4 rounded-lg hover:rounded-lg w-30" />
                     <div className="bg-white dark:bg-neutral-700 text-center p-4 rounded-lg hover:rounded-lg flex w-30">
                         <input type="text" onChange={handleChange} name="fileName" value={qrForm.fileName} className="bg-transparent text-right"></input>
                         <span>.png</span>
                     </div>
-                    <button type="submit" onClick={downloadQR} className="bg-neutral-400 dark:bg-neutral-900 p-3 rounded-lg font-bold">Download</button>
+                    <div className="flex gap-2">
+                        <label htmlFor="bg-color">Background</label>
+                        <input type="color" name="bgc" id="bgc" className="rounded dark:bg-black" onChange={handleChange} value="#ffffff" />
+                        <label htmlFor="fg-color" className="ml-4">Foreground</label>
+                        <input type="color" name="fgc" id="fgc" onChange={handleChange} className="dark:bg-black rounded" value="#171717" />
+                    </div>
+                    <button type="submit" onClick={downloadQR} className="bg-neutral-400 dark:bg-neutral-900 p-3 rounded-md font-bold shadow shadow-neutral-700 hover:shadow-md">Download</button>
                 </div>
             </div>
         </main>
