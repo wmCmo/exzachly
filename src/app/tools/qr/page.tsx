@@ -75,7 +75,7 @@ export default function Qr() {
                         <label htmlFor="fg-color" className="ml-4">Foreground</label>
                         <input type="color" name="fgc" id="fgc" onChange={handleChange} className="dark:bg-black rounded" value="#171717" />
                     </div>
-                    <button type="submit" onClick={downloadQR} className="bg-neutral-400 dark:bg-neutral-900 p-3 rounded-md font-bold shadow shadow-neutral-700 hover:shadow-md">Download</button>
+                    <button type="submit" onClick={downloadQR} className="bg-neutral-200 p-4 dark:bg-neutral-900 rounded mt-8 outline outline-1 hover:outline-offset-1">Download</button>
                 </div>
             </div>
         </main>

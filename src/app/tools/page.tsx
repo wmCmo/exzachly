@@ -1,4 +1,4 @@
-import { QrCode, Timer } from "@phosphor-icons/react/dist/ssr";
+import { QrCode, Timer, Selection } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 
 export default function Tools() {
@@ -15,6 +15,12 @@ export default function Tools() {
             desc: "Your minimal Pomodoro Timer",
             file: <Timer fill="#383838" weight="thin" className="dark:fill-neutral-500" size='5em' />
         },
+        {
+            name: "Empty Character",
+            path: "/tools/empchar",
+            desc: "Copy the Empty Character",
+            file: <Selection fill="#383838" weight="thin" className="dark:fill-neutral-500" size='5em' />
+        }
     ]
     const mappedTools = tools.map((tool) => {
         return (
