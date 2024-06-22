@@ -1,30 +1,53 @@
 'use client'
 import Image from "next/image";
 import Link from "next/link";
+import { List } from "@phosphor-icons/react/dist/ssr";
 import { usePathname } from "next/navigation";
+import { Montserrat } from "next/font/google";
+import { useState } from "react";
+
+const montserrat = Montserrat({ subsets: ["latin"] })
 
 export default function Nav() {
+    const [navShow, setNavShow] = useState(false);
     const pages = ['home', 'tools', 'notion', 'community', 'portfolio'];
 
-    const pathname = usePathname();
+    const handleToggle = () => {
+        setNavShow(prevNavShow => !prevNavShow);
+    }
 
+    const pathname = usePathname();
     const mappedPages = pages.map(page_ => {
         return (
-            <Link href={page_ === 'home' ? '/' : `../${page_}`} key={page_}>
+            <Link href={page_ === 'notion' ? 'https://exzachly.notion.site' : page_ === 'home' ? '/' : `../${page_}`} key={page_}>
                 <li className={
-                    `${(pathname.includes('/' + ((page_ === 'home') && (pathname == '/') ? '' : page_))) ? 'font-bold' : ''} transition-transform ease-in-out hover:underline underline-offset-8 duration-300 text-center`
+                    `${(pathname.includes('/' + ((page_ === 'home') && (pathname == '/') ? '' : page_))) ? 'font-bold' : ''} my-4 hover:underline underline-offset-8 text-center`
                 }>{page_.charAt(0).toUpperCase() + page_.slice(1)}</li>
             </Link>
         )
     })
+
+    const logo = <Image src='/logo.svg' alt="logo" width={40} height={40} className="ml-6 mr-4 my-4" />;
+    const name = <h4 className={`${montserrat.className} text-lime-600 dark:text-lime-300 font-bold tracking-widest`}>EXZACHLY</h4>
+
     return (
-        <nav className="flex items-center mb-10 bg-white dark:bg-neutral-900 p-10 rounded-b-md">
-            <Link href='../'>
-                <Image className="mr-5" src={`/logo.svg`} alt="logo" width={40} height={40} />
-            </Link>
-            <ul className="flex gap-5 ml-auto flex-wrap justify-center text-neutral-700 dark:text-neutral-200">
-                {mappedPages}
-            </ul>
-        </nav>
+        <div className="sticky top-0 bg-neutral-900 mb-10">
+            <div className="select-none sm:hidden flex justify-between items-center">
+                {<List size={40} weight="light" className="mx-6 my-4 hover:cursor-pointer" onClick={handleToggle} />}
+                {name}
+                <Link href='../'>
+                    {logo}
+                </Link>
+            </div>
+            <nav className={`bg-white dark:bg-neutral-800 p-2 ${navShow ? 'block absolute sm:static w-full' : 'hidden'} sm:flex justify-between items-center`}>
+                <Link href='../' className="hidden sm:flex items-center">
+                    {logo}
+                    {name}
+                </Link>
+                <ul className="sm:flex gap-4 mx-6">
+                    {mappedPages}
+                </ul>
+            </nav>
+        </div>
     )
 }

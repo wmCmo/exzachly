@@ -25,13 +25,13 @@ export default function Tools() {
             name: "Character Counter",
             path: "/tools/char-count",
             desc: "Count Characters as You Write",
-            file: <Textbox fill="#383838" weight="thin" className="dark: fill-neutral-500" size='5em' />
+            file: <Textbox fill="#383838" weight="thin" className="dark:fill-neutral-500" size='5em' />
         }
     ]
     const mappedTools = tools.map((tool) => {
         return (
             <Link href={tool.path} key={tool.name} className="text-neutral-600 dark:text-neutral-300" target={tool.name === 'Pomodoro' ? '_blank' : ''}>
-                <div className="p-5 flex items-center justify-between bg-white dark:bg-neutral-800 rounded-lg">
+                <div className=" mt-4 sm:mt-0 p-5 flex items-center justify-between bg-white hover:bg-neutral-50 dark:bg-neutral-800 dark:hover:bg-neutral-700 rounded-lg transition duration-200">
                     <div className="col">
                         <h4 className="text-xl font-bold">{tool.name}</h4>
                         <p className="dark:text-neutral-300">{tool.desc}</p>
@@ -44,13 +44,13 @@ export default function Tools() {
         )
     })
     return (
-        <>
-            <div className="my-10 p-6 bg-neutral-100 dark:bg-neutral-900 rounded-xl">
+        <div className="h-full">
+            <div className="p-8 bg-neutral-100 dark:bg-neutral-900 rounded-lg">
                 <h2 className="text-neutral-800 dark:text-neutral-200 text-3xl">Tools you might like</h2>
-                <div className="sm:grid grid-cols-2 gap-8 lg:grid-cols-3 py-8">
+                <div className="sm:grid grid-cols-2 gap-8 lg:grid-cols-3 py-4">
                     {mappedTools}
                 </div>
             </div>
-        </>
+        </div>
     )
 }
