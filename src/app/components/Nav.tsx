@@ -31,7 +31,7 @@ export default function Nav() {
     const name = <h4 className={`${montserrat.className} text-lime-600 dark:text-lime-300 font-bold tracking-widest`}>EXZACHLY</h4>
 
     return (
-        <div className="sticky top-0 bg-neutral-900 mb-10">
+        <div className="sticky top-0 bg-neutral-100 dark:bg-neutral-900 mb-10 z-20">
             <div className="select-none sm:hidden flex justify-between items-center">
                 {<List size={40} weight="light" className="mx-6 my-4 hover:cursor-pointer" onClick={handleToggle} />}
                 {name}
