@@ -1,4 +1,4 @@
-import { QrCode, Timer, Selection, Textbox } from "@phosphor-icons/react/dist/ssr";
+import { QrCode, Timer, Selection, Textbox, BookBookmark } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 
 export default function Tools() {
@@ -26,8 +26,15 @@ export default function Tools() {
             path: "/tools/char-count",
             desc: "Count Characters as You Write",
             file: <Textbox fill="#383838" weight="thin" className="dark:fill-neutral-500" size='5em' />
+        },
+        {
+            name: "Jisho Slide",
+            path: "https://wmcmo.github.io/jisho-slide/",
+            desc: "言葉の流れに浸る",
+            file: <BookBookmark fill="#383838" weight="thin" className="dark:fill-neutral-500" size='5em' />
         }
-    ]
+    ];
+
     const mappedTools = tools.map((tool) => {
         return (
             <Link href={tool.path} key={tool.name} className="text-neutral-600 dark:text-neutral-300" target={tool.name === 'Pomodoro' ? '_blank' : ''}>
@@ -41,8 +48,8 @@ export default function Tools() {
                     </div>
                 </div>
             </Link>
-        )
-    })
+        );
+    });
     return (
         <div className="h-full">
             <div className="p-8 bg-neutral-100 dark:bg-neutral-900 rounded-lg">
@@ -52,5 +59,5 @@ export default function Tools() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
