@@ -9,6 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Exzachly",
   description: "Zach's personal website",
+  keywords: "qr code generator, character counter, notion, personal website, pomodoro, online tools, empty character"
 };
 
 export default function RootLayout({
