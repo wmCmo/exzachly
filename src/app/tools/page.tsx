@@ -1,5 +1,6 @@
-import { QrCode, Timer, Selection, Textbox, BookBookmark } from "@phosphor-icons/react/dist/ssr";
+import { QrCode, Timer, Selection, Textbox, BookBookmark, Keyboard } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
+import path from "path";
 
 export default function Tools() {
     const tools = [
@@ -32,6 +33,12 @@ export default function Tools() {
             path: "https://wmcmo.github.io/jisho-slide/",
             desc: "言葉の流れに浸る",
             file: <BookBookmark fill="#383838" weight="thin" className="dark:fill-neutral-500" size='5em' />
+        },
+        {
+            name: "TH-EN Keys",
+            path: "/tools/th-en",
+            desc: "Forgot to change language?",
+            file: <Keyboard fill="#383838" weight="thin" className="dark:fill-neutral-500" size='5em' />
         }
     ];
 
