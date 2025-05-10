@@ -5,8 +5,15 @@ import { CopySimple, CheckCircle, ShareNetwork } from '@phosphor-icons/react/dis
 
 export default function Page({ searchParams }: { searchParams: { from?: string; input?: string; }; }) {
 
+    const toString = (text: string | undefined) => {
+        if (!text) {
+            return undefined;
+        }
+        return Buffer.from(text, "hex").toString("utf-8");
+    };
+
     const [from, setFrom] = useState(searchParams.from || "th");
-    const [input, setInput] = useState(searchParams.input || "ไทแทน");
+    const [input, setInput] = useState(toString(searchParams.input) || "ไทแทน");
     const [showCopy, setShowCopy] = useState(true);
     const [showLinkCopy, setShowLinkCopy] = useState(false);
 
@@ -41,7 +48,7 @@ export default function Page({ searchParams }: { searchParams: { from?: string; 
     const result = useMemo(() => change(input), [input, change]);
 
     const handleCopy = () => {
-        navigator.clipboard.writeText(result);
+        navigator.clipboard.writeText('wmcmo');
         setShowCopy(false);
         setTimeout(() => {
             setShowCopy(true);
@@ -52,8 +59,12 @@ export default function Page({ searchParams }: { searchParams: { from?: string; 
         setInput(e.target.value);
     };
 
+    const toHex = (text: string) => {
+        return Buffer.from(text, "utf-8").toString("hex");
+    };
+
     const handleLinkCopy = () => {
-        navigator.clipboard.writeText(`https://exzachly.vercel.app/tools/th-en?from=${from}&input=${input}`);
+        navigator.clipboard.writeText(`https://exzachly.vercel.app/tools/th-en?from=${from}&input=${toHex(input)}`);
         setShowLinkCopy(true);
         setTimeout(() => {
             setShowLinkCopy(false);
