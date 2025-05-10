@@ -53,7 +53,7 @@ export default function Page({ searchParams }: { searchParams: { from?: string; 
     };
 
     const handleLinkCopy = () => {
-        navigator.clipboard.writeText(`https://exzachly.vercel.app/th-en?from=${from}&input=${input}`);
+        navigator.clipboard.writeText(`https://exzachly.vercel.app/tools/th-en?from=${from}&input=${input}`);
         setShowLinkCopy(true);
         setTimeout(() => {
             setShowLinkCopy(false);
