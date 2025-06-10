@@ -43,7 +43,7 @@ export default function Qr() {
     return (
         <main className="mx-5 h-3/4 text-neutral-800 dark:text-neutral-200">
             <h1 className="text-vw leading-none sm:text-7xl font-bold">Free QR Code Generator</h1>
-            <h4 className="text-xl my-4">Tired of paying for QR Codes? This one is for you.</h4>
+            <h4 className="text-xl my-4">Tired of tracking and redirecting? This one is for you.</h4>
             <div className="flex flex-col gap-6 sm:flex-row items-center sm:mt-12 mt-10">
                 <div className="col rounded-lg flex justify-center p-1 max-h-60 max-w-60" id="qr-holder" style={{ background: qrForm.bgc }}>
                     <Image
