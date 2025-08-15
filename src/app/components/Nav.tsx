@@ -10,7 +10,7 @@ const montserrat = Montserrat({ subsets: ["latin"] })
 
 export default function Nav() {
     const [navShow, setNavShow] = useState(false);
-    const pages = ['home', 'tools', 'notion', 'community', 'portfolio'];
+    const pages = ['home', 'tools', 'notion', 'community', 'portfolio', 'about'];
 
     const handleToggle = () => {
         setNavShow(prevNavShow => !prevNavShow);
