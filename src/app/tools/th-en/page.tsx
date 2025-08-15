@@ -3,7 +3,13 @@ import Button from '@/app/components/Button';
 import React, { useCallback, useMemo, useState } from 'react';
 import { CopySimple, CheckCircle, ShareNetwork } from '@phosphor-icons/react/dist/ssr';
 
-export default function Page({ searchParams }: { searchParams: { from?: string; input?: string; }; }) {
+
+interface PageProps {
+    searchParams: Promise<{ from?: string; input?: string; }>;
+}
+
+export default async function Page({ searchParams }: PageProps) {
+    const params = await searchParams;
 
     const toString = (text: string | undefined) => {
         if (!text) {
@@ -12,8 +18,8 @@ export default function Page({ searchParams }: { searchParams: { from?: string; 
         return Buffer.from(text, "hex").toString("utf-8");
     };
 
-    const [from, setFrom] = useState(searchParams.from || "th");
-    const [input, setInput] = useState(toString(searchParams.input) || "ไทแทน");
+    const [from, setFrom] = useState(params.from || "th");
+    const [input, setInput] = useState(toString(params.input) || "ไทแทน");
     const [showCopy, setShowCopy] = useState(true);
     const [showLinkCopy, setShowLinkCopy] = useState(false);
 
@@ -45,7 +51,7 @@ export default function Page({ searchParams }: { searchParams: { from?: string; 
         return "";
     }, [from]);
 
-    const result = useMemo(() => change(input), [input, change]);
+    // const result = useMemo(() => change(input), [input, change]);
 
     const handleCopy = () => {
         navigator.clipboard.writeText('wmcmo');
