@@ -1,7 +1,7 @@
 'use client';
 
 import Link from "next/link";
-import { DiscordLogo, GithubLogo, RedditLogo, CheckCircle } from "@phosphor-icons/react/dist/ssr";
+import { DiscordLogo, GithubLogo, RedditLogo, CheckCircle, LinkedinLogo } from "@phosphor-icons/react/dist/ssr";
 import { useState } from "react";
 
 export default function Footer() {
@@ -26,6 +26,9 @@ export default function Footer() {
             </Link>
             <Link href='https://www.reddit.com/user/Living_Book/submitted/' target="_blank">
                 <RedditLogo size={30} color="#737373" weight="duotone" />
+            </Link>
+            <Link href={'https://www.linkedin.com/in/exzachly'} target="_blank">
+                <LinkedinLogo size={30} color="#737373" weight="duotone" />
             </Link>
         </div>
     );
