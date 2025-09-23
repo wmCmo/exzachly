@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 
-export default function page() {
+export default function About() {
     const url = 'https://exzachly.vercel.app/contact.vcf';
     const [vcf, setVCF] = useState(true);
 
