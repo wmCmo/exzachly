@@ -1,5 +1,6 @@
 import React from 'react';
 import CommunityToggle from '../components/CommunityToggle';
+import Link from 'next/link';
 
 const DB_ID = '75378b2ea59a4bd389163517f5cc37c5';
 const END_POINT = `https://api.notion.com/v1/databases/${DB_ID}/query`;
@@ -34,7 +35,8 @@ export default async function page() {
 
 
     return (
-        <div>
+        <div className='text-neutral-800 dark:text-neutral-200'>
+            <h1 className='text-vw leading-none sm:text-7xl font-bold my-8 text-center sm:text-left'>Community</h1>
             <CommunityToggle name='reddit' posts={redditPosts} />
         </div>
     );

@@ -16,7 +16,7 @@ export default function Footer() {
     };
 
     return (
-        <div className="w-full flex justify-center items-center gap-4 p-6 border-t-2 border-neutral-100 dark:border-neutral-800">
+        <div className="mt-8 w-full flex justify-center items-center gap-4 p-6 border-t-2 border-neutral-100 dark:border-neutral-800">
             <div id="discord" onClick={handleDiscord} className="relative z-10 hover:cursor-copy">
                 <CheckCircle size={30} color="#a3e365" weight="duotone" id="discord-check" className={`absolute ${showDiscord ? 'opacity-0' : 'opacity-100'} transition duration-200`} />
                 <DiscordLogo size={30} color="#737373" weight="duotone" id="discord-logo" className={`cursor-copy ${showDiscord ? 'opacity-100' : 'opacity-0'} transition duration-200`} />

@@ -19,7 +19,7 @@ export default function Nav() {
     const pathname = usePathname();
     const mappedPages = pages.map(page_ => {
         return (
-            <Link href={page_ === 'notion' ? 'https://exzachly.notion.site' : page_ === 'home' ? '/' : `../${page_}`} key={page_}>
+            <Link target={page_ === 'notion' ? '_blank' : ''} href={page_ === 'notion' ? 'https://exzachly.notion.site' : page_ === 'home' ? '/' : `../${page_}`} key={page_}>
                 <li className={
                     `${(pathname.includes('/' + ((page_ === 'home') && (pathname == '/') ? '' : page_))) ? 'font-bold' : ''} my-4 hover:underline underline-offset-8 text-center`
                 }>{page_.charAt(0).toUpperCase() + page_.slice(1)}</li>

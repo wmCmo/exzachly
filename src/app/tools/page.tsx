@@ -44,7 +44,7 @@ export default function Tools() {
 
     const mappedTools = tools.map((tool) => {
         return (
-            <Link href={tool.path} key={tool.name} className="text-neutral-600 dark:text-neutral-300" target={tool.name === 'Pomodoro' ? '_blank' : ''}>
+            <Link target={(tool.name === 'Pomodoro' || tool.name === 'Jisho Slide') ? '_blank' : ''} href={tool.path} key={tool.name} className="text-neutral-600 dark:text-neutral-300">
                 <div className=" mt-4 sm:mt-0 p-5 flex items-center justify-between bg-white hover:bg-neutral-50 dark:bg-neutral-800 dark:hover:bg-neutral-700 rounded-lg transition duration-200">
                     <div className="col">
                         <h4 className="text-xl font-bold">{tool.name}</h4>
