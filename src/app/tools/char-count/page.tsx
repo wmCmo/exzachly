@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-export default function ChartCount() {
+export default function CharCount() {
     const [text, setText] = useState('')
 
     const handleChange = (e: { target: { value: string } }) => {
