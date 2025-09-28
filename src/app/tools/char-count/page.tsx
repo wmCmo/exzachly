@@ -1,19 +1,27 @@
-'use client'
+'use client';
 
-import { useState } from "react"
+import { useState } from "react";
+import TextArea from "@/app/components/TextArea";
 
-export default function ChartCount() {
-    const [text, setText] = useState('')
+export default function CharCount() {
+    const [text, setText] = useState<string[]>(['']);
 
-    const handleChange = (e: { target: { value: string } }) => {
-        const value = e.target.value;
-        setText(value);
-    }
+    const handleAdd = () => {
+        setText(prev => {
+            const newArr = [...prev];
+            newArr.push('');
+            return newArr;
+        });
+    };
 
     return (
-        <div>
-            <textarea onChange={handleChange} name="text" id="text" className="dark:bg-neutral-100 dark:text-black resize rounded-md p-4"></textarea>
-            <h3>You now have {text.length} characters</h3>
-        </div>
-    )
+        <>
+            <h1 className="text-vw leading-none sm:text-7xl font-bold">Flexible Text Counter</h1>
+            <h4 className="text-xl my-4">Layout-free text counter. Designed for you.</h4>
+            <button onClick={handleAdd} className="bg-lime-600 py-1 text-white px-4 rounded-md font-bold mt-4 mb-8">New Text Box</button>
+            <div className="-mt-4 sm:flex gap-4 flex-wrap">
+                {text.map((_, index) => <TextArea key={index} unique={index} text={text} setText={setText} />)}
+            </div>
+        </>
+    );
 }
