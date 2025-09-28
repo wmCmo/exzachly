@@ -35,7 +35,7 @@ export default function CharCount() {
     };
 
     const Button = ({ main, handleClick, children }: { main: boolean; handleClick: () => void; children: ReactNode; }) => {
-        return <button onClick={handleClick} className={`${main ? 'bg-lime-600 hover:bg-lime-500' : 'dark:bg-neutral-800 dark:hover:bg-neutral-700'} transition-colors duration-100 py-1 text-white px-4 rounded-md font-bold`}>{children}</button>;
+        return <button onClick={handleClick} className={`${main ? 'bg-lime-600 hover:bg-lime-500' : 'bg-neutral-500 hover:bg-neutral-400 dark:bg-neutral-800 dark:hover:bg-neutral-700'} transition-colors duration-100 py-1 text-white px-4 rounded-md font-bold`}>{children}</button>;
     };
 
     return (
