@@ -1,6 +1,5 @@
 import React from 'react';
 import CommunityToggle from '../components/CommunityToggle';
-import Link from 'next/link';
 
 const DB_ID = '75378b2ea59a4bd389163517f5cc37c5';
 const END_POINT = `https://api.notion.com/v1/databases/${DB_ID}/query`;
@@ -26,7 +25,7 @@ export default async function page() {
     const response = await fetch(END_POINT, params);
     const data = await response.json();
 
-    const redditPosts = data.results.filter((item: NotionItemType) => {
+    const redditPosts = (data.results || []).filter((item: NotionItemType) => {
         return (
             item.properties.Tags.select.name == 'Reddit'
         );
