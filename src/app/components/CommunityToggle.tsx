@@ -1,7 +1,7 @@
 'use client';
 import React, { useLayoutEffect, useRef, useState } from 'react';
 import { CaretCircleRight, Globe } from '@phosphor-icons/react/dist/ssr';
-import { NotionItemType } from '../community/page';
+import { NotionItemType } from '../[locale]/community/page';
 import Link from 'next/link';
 
 export default function CommunityToggle({ name, posts }: { name: string; posts: NotionItemType[]; }) {

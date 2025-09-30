@@ -2,14 +2,16 @@
 
 import React, { ReactNode, useEffect, useState } from "react";
 import TextArea from "@/app/components/TextArea";
+import { DictionaryType } from "@/app/dictionaries/en";
+import { locales } from "@/middleware";
 
 export interface TextAreaProps {
     file: string;
     text: string;
 }
 
-export default function CharCount() {
-    const emptyTextArea = { file: 'Untitled', text: '' };
+export default function CharCountClient({ dict, locale }: { dict: DictionaryType['charCount']; locale: locales; }) {
+    const emptyTextArea = { file: dict.untitled, text: '' };
     const [text, setText] = useState<TextAreaProps[]>([emptyTextArea]);
 
     useEffect(() => {
@@ -40,17 +42,17 @@ export default function CharCount() {
 
     return (
         <>
-            <h1 className="text-vw leading-none sm:text-7xl font-bold">Flexible Text Counter</h1>
-            <h4 className="text-xl my-4">Layout-free text counter. Designed for you.</h4>
+            <h1 className="text-vw leading-none sm:text-7xl font-bold">{dict.header}</h1>
+            <h4 className="text-xl my-4">{dict.desc}</h4>
             <div className="sm:flex items-center mt-4 mb-8 gap-4">
-                <Button main={true} handleClick={handleAdd}>New Text Box</Button>
+                <Button main={true} handleClick={handleAdd}>{dict.new}</Button>
                 <div className="flex items-center gap-2 mt-4 sm:mt-0">
-                    <Button main={false} handleClick={handleSave}>Save</Button>
-                    <Button main={false} handleClick={handleReset}>Reset</Button>
+                    <Button main={false} handleClick={handleSave}>{dict.save}</Button>
+                    <Button main={false} handleClick={handleReset}>{dict.reset}</Button>
                 </div>
             </div>
             <div className="-mt-4 sm:flex gap-4 flex-wrap">
-                {text.map((value, index) => <TextArea key={index} unique={index} value={value} setText={setText} text={text} />)}
+                {text.map((value, index) => <TextArea key={index} unique={index} value={value} setText={setText} text={text} dict={dict} locale={locale} />)}
             </div>
         </>
     );

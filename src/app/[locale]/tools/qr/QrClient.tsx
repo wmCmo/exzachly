@@ -1,16 +1,16 @@
-/* eslint-disable jsx-a11y/alt-text */
-'use client'
+'use client';
 
+import { DictionaryType } from "@/app/dictionaries/en";
 import { useQRCode } from "next-qrcode";
 import { useState } from "react";
 
-export default function Qr() {
+export default function QrClient({ dict }: { dict: DictionaryType['qr']; }) {
     const [qrForm, setQrForm] = useState({
         link: 'https://exzachly.notion.site',
-        fileName: 'image',
+        fileName: dict.filename,
         bgc: "#ffffff",
         fgc: "#171717"
-    })
+    });
     const { Image } = useQRCode();
 
     const handleChange = (e: { target: { value: string; name: string; }; }) => {
@@ -20,33 +20,34 @@ export default function Qr() {
                 return {
                     ...prevQrForm,
                     [name]: value
-                }
-            })
+                };
+            });
         } else {
             setQrForm(prevQrForm => {
                 return {
                     ...prevQrForm,
                     [name]: name === "link" ? "https://" : "image"
-                }
-            })
+                };
+            });
         }
-    }
+    };
 
     const downloadQR = () => {
         const qr = document.getElementById('qr-holder');
         const a = document.createElement('a');
         a.href = (qr?.childNodes[0] as HTMLImageElement).src;
-        a.download = `${qrForm.fileName}.png`
-        a.click()
-    }
+        a.download = `${qrForm.fileName}.png`;
+        a.click();
+    };
 
     return (
         <main className="mx-5 h-3/4 text-neutral-800 dark:text-neutral-200">
-            <h1 className="text-vw leading-none sm:text-7xl font-bold">Free QR Code Generator</h1>
-            <h4 className="text-xl my-4">Tired of tracking and redirecting? This one is for you.</h4>
+            <h1 className="text-vw leading-none sm:text-7xl font-bold">{dict.header}</h1>
+            <h4 className="text-xl my-4 font-bold">{dict.desc}</h4>
             <div className="flex flex-col gap-6 sm:flex-row items-center sm:mt-12 mt-10">
                 <div className="col rounded-lg flex justify-center p-1 max-h-60 max-w-60" id="qr-holder" style={{ background: qrForm.bgc }}>
                     <Image
+                        alt="QR Code preview"
                         text={qrForm.link}
                         options={{
                             type: 'image/jpeg',
@@ -70,14 +71,14 @@ export default function Qr() {
                         <span>.png</span>
                     </div>
                     <div className="flex gap-2">
-                        <label htmlFor="bg-color">Background</label>
+                        <label htmlFor="bg-color">{dict.background}</label>
                         <input type="color" name="bgc" id="bgc" className="rounded dark:bg-black" onChange={handleChange} value="#ffffff" />
-                        <label htmlFor="fg-color" className="ml-4">Foreground</label>
+                        <label htmlFor="fg-color" className="ml-4">{dict.foreground}</label>
                         <input type="color" name="fgc" id="fgc" onChange={handleChange} className="dark:bg-black rounded" value="#171717" />
                     </div>
-                    <button type="submit" onClick={downloadQR} className="bg-neutral-200 p-4 dark:bg-neutral-900 rounded mt-8 outline outline-1 hover:outline-offset-1">Download</button>
+                    <button type="submit" onClick={downloadQR} className="bg-neutral-200 p-4 dark:bg-neutral-900 rounded mt-8 outline outline-1 hover:outline-offset-1">{dict.download}</button>
                 </div>
             </div>
         </main>
-    )
+    );
 }
