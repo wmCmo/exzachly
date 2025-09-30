@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
 import Nav from "../components/Nav";
@@ -8,10 +8,38 @@ import { getDictionary } from "../dictionaries";
 
 const inter = Inter({ subsets: ["latin"] });
 
+const title = "Exzachly | Zach's Personal Website";
+const description = "Hand-crafted productivity tools and more.";
+const imageURL = "https://w9bzpeofpetbsuv8.public.blob.vercel-storage.com/exzachly.png";
+
+export const viewport: Viewport = {
+  themeColor: "#5FA845"
+};
+
 export const metadata: Metadata = {
-  title: "Exzachly",
-  description: "Zach's personal website",
-  keywords: "qr code generator, character counter, notion, personal website, pomodoro, online tools, empty character"
+  title: { default: title, template: `%s | ${title}` },
+  description: description,
+  keywords: "qr code generator, character counter, notion, personal website, pomodoro, online tools, empty character",
+  openGraph: {
+    title: title,
+    description: description,
+    images: [
+      {
+        url: imageURL,
+        width: 1200,
+        height: 360,
+        alt: "Exzachly's site thumbnail"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: title,
+    description: description,
+    images: [
+      imageURL
+    ]
+  }
 };
 
 export default async function RootLayout({
