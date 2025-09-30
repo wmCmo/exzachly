@@ -54,7 +54,7 @@ export default function TextArea({ unique, value, text, setText }: { unique: num
                 <div className="flex justify-center px-2 py-1 items-center relative">
                     <input type="text" name='file' value={value.file} className='dark:bg-neutral-800 dark:text-neutral-400 text-white bg-neutral-500 text-center font-bold rounded-full' onChange={handleChange} />
                     <div className='right-2 absolute flex'>
-                        <PlusCircle fill='white' weight='fill' width={'1.2em'} height={'1.2em'} className={`dark:fill-[#e5c07b] cursor-pointer transition-transform ${countChar ? 'rotate-180' : 'rotate-0'}`} onClick={() => setCountChar(prev => !prev)} />
+                        <PlusCircle fill='white' weight='fill' width={'1.2em'} height={'1.2em'} alt = 'Selected Count' className={`dark:fill-[#e5c07b] cursor-pointer transition-transform ${countChar ? 'rotate-180' : 'rotate-0'}`} onClick={() => setCountChar(prev => !prev)} />
                         {(text.length > 1) && <XCircle fill='white' weight='fill' onClick={handleDelete} width={'1.2em'} height={'1.2em'} className='cursor-pointer dark:fill-[#f56c7f]' alt='Delete' />}
                     </div>
                 </div>
