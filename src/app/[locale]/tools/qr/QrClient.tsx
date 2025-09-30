@@ -46,8 +46,8 @@ export default function QrClient({ dict }: { dict: DictionaryType['qr']; }) {
             <h4 className="text-xl my-4 font-bold">{dict.desc}</h4>
             <div className="flex flex-col gap-6 sm:flex-row items-center sm:mt-12 mt-10">
                 <div className="col rounded-lg flex justify-center p-1 max-h-60 max-w-60" id="qr-holder" style={{ background: qrForm.bgc }}>
+                    {/* eslint-disable-next-line jsx-a11y/alt-text */}
                     <Image
-                        alt="QR Code preview"
                         text={qrForm.link}
                         options={{
                             type: 'image/jpeg',
