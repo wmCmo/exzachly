@@ -1,6 +1,6 @@
-# EXZACHLY | My website
+# EXZACHLY | My Personal website
 
->🚧 This site is under construction
+>🚧 This site is under construction, built with Next.js
 
 - This is where I keep my works
 - This is where I keep my tools
@@ -26,3 +26,5 @@
 - Jisho Slide
 - TH-EN Key Converter
 
+## Attribution
+- Icons: [phosphor-icon](https://github.com/phosphor-icons/react) for react, one of the best icon llibraries I have ever used
