@@ -8,7 +8,7 @@ import { RecordMap } from '../[locale]/tools/char-count/timer/TimerClient';
 import { defaultRecord } from '@/utils/defaultRecord';
 
 export default function TextArea({ unique, value, text, setText, dict, locale }: { unique: number; value: TextAreaProps; text: TextAreaProps[]; setText: Dispatch<SetStateAction<TextAreaProps[]>>; dict: DictionaryType['charCount']; locale: locales; }) {
-    const [isChar, setIsChar] = useState(true);
+    const [isChar, setIsChar] = useState(locale === 'ja');
     const [selectedText, setSelectedText] = useState(0);
     const [countChar, setCountChar] = useState(false);
     const [speech, setSpeech] = useState(false);
@@ -69,6 +69,10 @@ export default function TextArea({ unique, value, text, setText, dict, locale }:
     let diff = value.text.length - selectedText;
     if (diff === value.text.length) diff = 0;
 
+    const time = Math.trunc((isChar ? record.ja : record.en) * (isChar ? value.text.length : countWords()) / dict.speechTimer.limit);
+    const min = Math.trunc(time / 60);
+    const sec = time % 60;
+
     return (
         <div className='sm:max-w-full sm:mt-0 mt-4'>
             <div className='dark:bg-neutral-800 rounded-xl bg-neutral-800'>
@@ -93,7 +97,7 @@ export default function TextArea({ unique, value, text, setText, dict, locale }:
                 {
                     speech &&
                     <div className="flex flex-wrap gap-2">
-                        <p className='mt-2'>⏱️{record ? Math.trunc((isChar ? record.ja : record.en) * (isChar ? value.text.length : countWords()) / 300) : 0} sec</p>
+                        <p className='mt-2'>⏱️{min.toString().padStart(2, '0')}:{sec.toString().padStart(2, '0')}</p>
                     </div>
                 }
                 <div onClick={() => setIsChar(prev => !prev)} className={`relative ${locale === 'en' ? 'px-4' : 'px-6'} gap-12 flex bg-neutral-800 dark:bg-neutral-900 rounded-md items-center cursor-pointer ml-auto`}>
