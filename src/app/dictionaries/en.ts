@@ -39,7 +39,7 @@ const en = {
         save: "Save",
         reset: "Reset",
         untitled: "Untitled",
-        total: "Total",
+        total: "Count",
         selected: "Selected",
         diff: "Diff",
         word: "Word",
