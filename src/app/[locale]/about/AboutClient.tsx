@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { DictionaryType } from '@/app/dictionaries/en';
+import type { DictionaryType } from '@/app/dictionaries/en';
 
 export default function AboutClent({ dict }: { dict: DictionaryType['about']; }) {
     const url = 'https://exzachly.vercel.app/contact.vcf';

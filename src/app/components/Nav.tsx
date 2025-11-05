@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { Montserrat } from "next/font/google";
 import { useState } from "react";
 import { locales } from "@/middleware";
-import { DictionaryType } from "../dictionaries/en";
+import type { DictionaryType } from "../dictionaries/en";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 

@@ -3,10 +3,9 @@ import { getDictionary } from "../dictionaries";
 import { locales } from "@/middleware";
 
 
-export default async function Home({ params }: { params: Promise<{ locale: string; }>; }) {
+export default async function Home({ params }: { params: Promise<{ locale: locales; }>; }) {
 
-  const { locale } = await params as {locale: locales};
-
+  const { locale } = await params;
   const dict = await getDictionary(locale as "en" | "ja");
 
   return (

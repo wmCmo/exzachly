@@ -1,5 +1,5 @@
 import { getDictionary } from "@/app/dictionaries";
-import { DictionaryType } from "@/app/dictionaries/en";
+import type { DictionaryType } from "@/app/dictionaries/en";
 import { locales } from "@/middleware";
 import { QrCode, Timer, Selection, Textbox, BookBookmark, Keyboard } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";

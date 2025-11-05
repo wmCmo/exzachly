@@ -1,6 +1,6 @@
 'use client';
 
-import { DictionaryType } from "@/app/dictionaries/en";
+import type { DictionaryType } from "@/app/dictionaries/en";
 import { useQRCode } from "next-qrcode";
 import { useState } from "react";
 
