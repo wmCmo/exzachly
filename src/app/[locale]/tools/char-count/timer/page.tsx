@@ -7,6 +7,6 @@ export default async function page({ params }: { params: Promise<{ locale: local
     const { locale } = await params;
     const dict = await getDictionary(locale);
     return (
-        <TimerClient dict={dict}/>
+        <TimerClient dict={dict} locale={locale} />
     );
 }

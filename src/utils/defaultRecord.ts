@@ -1,0 +1,1 @@
+export const defaultRecord = { ja: 0, en: 0 };
