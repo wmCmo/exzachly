@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import { locales } from "@/middleware";
 import { getDictionary } from "../dictionaries";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 const title = "Exzachly | Zach's Personal Website";
 const description = "Hand-crafted productivity tools and more.";
@@ -52,7 +52,12 @@ export default async function RootLayout({
   const dict = await getDictionary(locale as locales);
   return (
     <html lang={locale} className="min-h-screen">
-      <body className={`${inter.className} flex flex-col min-h-screen`}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com"></link>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous"></link>
+        <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap" rel="stylesheet"></link>
+      </head>
+      <body className={`${inter.variable} flex flex-col min-h-screen`}>
         <Nav dict={dict.nav} locale={locale as locales} />
         <main id="main" className="mx-5 sm:mx-14 flex-1">
           {children}
