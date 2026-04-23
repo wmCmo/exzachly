@@ -1,7 +1,6 @@
-import React from 'react';
 import CommunityToggle from '@/app/components/CommunityToggle';
 import { getDictionary } from '@/app/dictionaries';
-import { locales } from '@/middleware';
+import localeArr from '@/types/Locales';
 
 const DB_ID = '75378b2ea59a4bd389163517f5cc37c5';
 const END_POINT = `https://api.notion.com/v1/databases/${DB_ID}/query`;
@@ -22,9 +21,9 @@ export interface NotionItemType {
     public_url: string;
 }
 
-export default async function page({ params }: { params: Promise<{ locale: string; }>; }) {
+export default async function page({ params }: { params: Promise<{ locale: typeof localeArr[number]; }>; }) {
     const { locale } = await params;
-    const dict = await getDictionary(locale as locales);
+    const dict = await getDictionary(locale);
 
     const response = await fetch(END_POINT, options);
     const data = await response.json();
@@ -34,8 +33,6 @@ export default async function page({ params }: { params: Promise<{ locale: strin
             item.properties.Tags.select.name == 'Reddit'
         );
     });
-
-
 
     return (
         <div className='text-neutral-800 dark:text-neutral-200'>

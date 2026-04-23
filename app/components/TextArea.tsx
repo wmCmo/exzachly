@@ -1,13 +1,13 @@
 'use client';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { PlusCircle, XCircle, StopCircle } from '@phosphor-icons/react/dist/ssr';
-import { TextAreaProps } from '../[locale]/tools/char-count/CharCountClient';
-import type { DictionaryType } from '../dictionaries/en';
-import { locales } from '@/middleware';
-import { RecordMap } from '../[locale]/tools/char-count/timer/TimerClient';
+import localeArr from '@/types/Locales';
 import { defaultRecord } from '@/utils/defaultRecord';
+import { PlusCircleIcon, StopCircleIcon, XCircleIcon } from '@phosphor-icons/react/dist/ssr';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { TextAreaProps } from '../[locale]/tools/char-count/CharCountClient';
+import { RecordMap } from '../[locale]/tools/char-count/timer/TimerClient';
+import type { DictionaryType } from '../dictionaries/en';
 
-export default function TextArea({ unique, value, text, setText, dict, locale }: { unique: number; value: TextAreaProps; text: TextAreaProps[]; setText: Dispatch<SetStateAction<TextAreaProps[]>>; dict: DictionaryType['charCount']; locale: locales; }) {
+export default function TextArea({ unique, value, text, setText, dict, locale }: { unique: number; value: TextAreaProps; text: TextAreaProps[]; setText: Dispatch<SetStateAction<TextAreaProps[]>>; dict: DictionaryType['charCount']; locale: typeof localeArr[number]; }) {
     const [isChar, setIsChar] = useState(locale === 'ja');
     const [selectedText, setSelectedText] = useState(0);
     const [countChar, setCountChar] = useState(false);
@@ -79,9 +79,9 @@ export default function TextArea({ unique, value, text, setText, dict, locale }:
                 <div className="flex justify-center px-2 py-1 items-center relative">
                     <input type="text" name='file' value={value.file} className='dark:bg-neutral-800 dark:text-neutral-400 text-white bg-neutral-800 text-center font-bold rounded-full' onChange={handleChange} />
                     <div className='right-2 absolute flex'>
-                        <StopCircle fill='white' weight='fill' width={'1.2em'} height={'1.2em'} alt='Toggle Speech' className={`dark:fill-[#4ac96e] cursor-pointer transition-transform ${speech ? 'rotate-45' : 'rotate-0'}`} onClick={() => { setSpeech(prev => !prev); setCountChar(false); }} />
-                        <PlusCircle fill='white' weight='fill' width={'1.2em'} height={'1.2em'} alt='Selected Count' className={`dark:fill-[#e5c07b] cursor-pointer transition-transform ${countChar ? 'rotate-180' : 'rotate-0'}`} onClick={() => { setCountChar(prev => !prev); setSpeech(false); }} />
-                        {(text.length > 1) && <XCircle fill='white' weight='fill' onClick={handleDelete} width={'1.2em'} height={'1.2em'} className='cursor-pointer dark:fill-[#f56c7f]' alt='Delete' />}
+                        <StopCircleIcon fill='white' weight='fill' width={'1.2em'} height={'1.2em'} alt='Toggle Speech' className={`dark:fill-[#4ac96e] cursor-pointer transition-transform ${speech ? 'rotate-45' : 'rotate-0'}`} onClick={() => { setSpeech(prev => !prev); setCountChar(false); }} />
+                        <PlusCircleIcon fill='white' weight='fill' width={'1.2em'} height={'1.2em'} alt='Selected Count' className={`dark:fill-[#e5c07b] cursor-pointer transition-transform ${countChar ? 'rotate-180' : 'rotate-0'}`} onClick={() => { setCountChar(prev => !prev); setSpeech(false); }} />
+                        {(text.length > 1) && <XCircleIcon fill='white' weight='fill' onClick={handleDelete} width={'1.2em'} height={'1.2em'} className='cursor-pointer dark:fill-[#f56c7f]' alt='Delete' />}
                     </div>
                 </div>
                 <textarea onChange={handleChange} onMouseUp={handleSelection} onSelect={handleSelection} name="text" id="text" value={value.text} className="block max-w-full resize dark:bg-neutral-100 dark:text-neutral-800 rounded-b-md p-4 min-w-full min-h-32"></textarea>

@@ -1,9 +1,8 @@
-import React from 'react';
-import CharCountClient from './CharCountClient';
-import { locales } from '@/middleware';
 import { getDictionary } from '@/app/dictionaries';
+import localeArr from '@/types/Locales';
+import CharCountClient from './CharCountClient';
 
-export default async function page({ params }: { params: Promise<{ locale: locales; }>; }) {
+export default async function page({ params }: { params: Promise<{ locale: typeof localeArr[number]; }>; }) {
     const { locale } = await params;
     const dict = await getDictionary(locale);
     return (

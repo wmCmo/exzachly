@@ -1,9 +1,9 @@
 "use client";
 
 import type { DictionaryType } from '@/app/dictionaries/en';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
 import { defaultRecord } from '@/utils/defaultRecord';
+import Link from 'next/link';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 export type RecordMap = { ja: number; en: number; };
 
@@ -22,7 +22,6 @@ export default function TimerClient({ dict, locale }: { dict: DictionaryType; lo
     }, []);
 
     useEffect(() => {
-        if (typeof window === 'undefined') return;
         try {
             const raw = localStorage.getItem('record');
             if (raw) {

@@ -1,6 +1,3 @@
-import React from 'react';
-
-
 function TextA() {
     return (
         <div className='sm:max-w-full'>

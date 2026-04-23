@@ -1,17 +1,16 @@
 import Tools from "./tools/Tools";
 import { getDictionary } from "../dictionaries";
-import { locales } from "@/middleware";
+import localeArr from "@/types/Locales";
 
-
-export default async function Home({ params }: { params: Promise<{ locale: locales; }>; }) {
+export default async function Home({ params }: { params: Promise<{ locale: typeof localeArr[number]; }>; }) {
 
   const { locale } = await params;
-  const dict = await getDictionary(locale as "en" | "ja");
+  const dict = await getDictionary(locale);
 
   return (
     <div className="">
       <h1 className="text-neutral-800 dark:text-neutral-200 mt-32 mb-10 text-vw leading-none sm:text-8xl font-black">{dict.home.greeting}<span className="text-lime-500">{dict.home.name}</span></h1>
-      <Tools dict={dict.tools} locale={locale}/>
+      <Tools dict={dict.tools} locale={locale} />
     </div>
   );
 }

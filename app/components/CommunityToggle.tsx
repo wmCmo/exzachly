@@ -1,8 +1,8 @@
 'use client';
-import React, { useLayoutEffect, useRef, useState } from 'react';
-import { CaretCircleRight, Globe } from '@phosphor-icons/react/dist/ssr';
-import { NotionItemType } from '../[locale]/community/page';
+import { CaretCircleRightIcon, GlobeIcon } from '@phosphor-icons/react/dist/ssr';
 import Link from 'next/link';
+import { useLayoutEffect, useRef, useState } from 'react';
+import { NotionItemType } from '../[locale]/community/page';
 
 export default function CommunityToggle({ name, posts }: { name: string; posts: NotionItemType[]; }) {
     const [openMenu, setOpenMenu] = useState(false);
@@ -30,7 +30,7 @@ export default function CommunityToggle({ name, posts }: { name: string; posts: 
     return (
         <div className='bg-neutral-100 dark:bg-neutral-800 p-4 rounded-md transition-all' style={{ height: openMenu ? `${height + 240}px` : '64px' }}>
             <div className="flex items-center mb-4 cursor-pointer select-none" onClick={() => setOpenMenu(prev => !prev)}>
-                <CaretCircleRight fill='#383838' weight='fill' className={`transition-transform fill-neutral-700 dark:fill-neutral-500 ${openMenu ? 'rotate-90' : ''}`} size={'2em'} />
+                <CaretCircleRightIcon fill='#383838' weight='fill' className={`transition-transform fill-neutral-700 dark:fill-neutral-500 ${openMenu ? 'rotate-90' : ''}`} size={'2em'} />
                 <h1 className='ml-2 text-xl font-bold'>{name.toUpperCase()}</h1>
                 <div className='bg-neutral-200 dark:bg-neutral-900 text-neutral-500 dark:text-neutral-400 font-mono rounded-sm ml-4 px-2'>
                     {posts.length}
@@ -48,8 +48,8 @@ export default function CommunityToggle({ name, posts }: { name: string; posts: 
                                 return (
                                     <Link href={item.public_url} key={item.id} target='_blank'>
                                         <div className='bg-neutral-100 hover:bg-neutral-300 dark:bg-neutral-800 dark:hover:bg-neutral-900 cursor-pointer p-2 rounded-md mb-4 sm:mb-0 flex items-center gap-2'>
-                                            <Globe fill='#383838' className='dark:fill-neutral-500 flex-shrink-0' weight='regular' size={'1.5em'} />
-                                            <h2 className='whitespace-nowrap overflow-hidden overflow-ellipsis'>{item.properties.Name.title[0].plain_text}</h2>
+                                            <GlobeIcon fill='#383838' className='dark:fill-neutral-500 shrink-0' weight='regular' size={'1.5em'} />
+                                            <h2 className='whitespace-nowrap overflow-hidden text-ellipsis'>{item.properties.Name.title[0].plain_text}</h2>
                                         </div>
                                     </Link>
                                 );

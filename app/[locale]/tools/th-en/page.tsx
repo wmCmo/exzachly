@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import KeyChangeUI from './KeyChangeUI';
 
 export default function page() {

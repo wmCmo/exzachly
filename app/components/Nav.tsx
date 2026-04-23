@@ -1,16 +1,16 @@
 'use client';
+import localeArr from "@/types/Locales";
+import { ListIcon, TranslateIcon } from "@phosphor-icons/react/dist/ssr";
+import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-import { List, Translate } from "@phosphor-icons/react/dist/ssr";
 import { usePathname } from "next/navigation";
-import { Montserrat } from "next/font/google";
 import { useState } from "react";
-import { locales } from "@/middleware";
 import type { DictionaryType } from "../dictionaries/en";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
-export default function Nav({ dict, locale }: { dict: DictionaryType['nav']; locale: locales; }) {
+export default function Nav({ dict, locale }: { dict: DictionaryType['nav']; locale: typeof localeArr[number]; }) {
     const [navShow, setNavShow] = useState(false);
     const pages = dict.pages;
 
@@ -41,7 +41,7 @@ export default function Nav({ dict, locale }: { dict: DictionaryType['nav']; loc
     return (
         <div className="sticky top-0 bg-neutral-100 dark:bg-neutral-900 mb-10 z-20">
             <div className="select-none sm:hidden flex justify-between items-center">
-                {<List size={40} weight="light" className="mx-6 my-4 hover:cursor-pointer" onClick={handleToggle} />}
+                {<ListIcon size={40} weight="light" className="mx-6 my-4 hover:cursor-pointer" onClick={handleToggle} />}
                 {name}
                 <Link href={`/${locale}`}>
                     {logo}
@@ -59,7 +59,7 @@ export default function Nav({ dict, locale }: { dict: DictionaryType['nav']; loc
                     <div className="flex sm:block justify-end">
                         <Link href={getTarget()}>
                             <div className="p-1 rounded-md mr-2 bg-neutral-500 dark:bg-neutral-900">
-                                <Translate width={'1.5em'} height={'1.5em'} weight="regular" alt="Translate icon" fill="white" className="dark:fill-neutral-500" />
+                                <TranslateIcon width={'1.5em'} height={'1.5em'} weight="regular" alt="Translate icon" fill="white" className="dark:fill-neutral-500" />
                             </div>
                         </Link>
                     </div>

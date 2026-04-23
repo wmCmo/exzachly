@@ -1,17 +1,17 @@
 'use client';
 
-import React, { ReactNode, useEffect, useState } from "react";
 import TextArea from "@/app/components/TextArea";
 import type { DictionaryType } from "@/app/dictionaries/en";
-import { locales } from "@/middleware";
+import localeArr from "@/types/Locales";
 import Link from "next/link";
+import { ReactNode, useEffect, useState } from "react";
 
 export interface TextAreaProps {
     file: string;
     text: string;
 }
 
-export default function CharCountClient({ dict, locale }: { dict: DictionaryType['charCount']; locale: locales; }) {
+export default function CharCountClient({ dict, locale }: { dict: DictionaryType['charCount']; locale: typeof localeArr[number]; }) {
     const emptyTextArea = { file: dict.untitled, text: '' };
     const [text, setText] = useState<TextAreaProps[]>([emptyTextArea]);
 

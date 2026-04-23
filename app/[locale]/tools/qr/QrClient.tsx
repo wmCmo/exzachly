@@ -76,7 +76,7 @@ export default function QrClient({ dict }: { dict: DictionaryType['qr']; }) {
                         <label htmlFor="fg-color" className="ml-4">{dict.foreground}</label>
                         <input type="color" name="fgc" id="fgc" onChange={handleChange} className="dark:bg-black rounded" value="#171717" />
                     </div>
-                    <button type="submit" onClick={downloadQR} className="bg-neutral-200 p-4 dark:bg-neutral-900 rounded mt-8 outline outline-1 hover:outline-offset-1">{dict.download}</button>
+                    <button type="submit" onClick={downloadQR} className="bg-neutral-200 p-4 dark:bg-neutral-900 rounded mt-8 outline-1 hover:outline-offset-1">{dict.download}</button>
                 </div>
             </div>
         </main>

@@ -1,8 +1,8 @@
 'use client';
 import Button from '@/app/components/Button';
-import React, { useCallback, useState } from 'react';
-import { CopySimple, CheckCircle, ShareNetwork } from '@phosphor-icons/react/dist/ssr';
+import { CheckCircleIcon, CopySimpleIcon, ShareNetworkIcon } from '@phosphor-icons/react/dist/ssr';
 import { useSearchParams } from 'next/navigation';
+import { useCallback, useState } from 'react';
 
 
 export default function KeyChangeUI() {
@@ -82,13 +82,13 @@ export default function KeyChangeUI() {
             <div className='bg-neutral-200 dark:bg-neutral-900 pl-8 py-4 rounded-lg text-4xl flex justify-between pr-4'>
                 <span>{change(input)}</span>
                 <div id="discord" onClick={handleCopy} className="relative z-10 hover:cursor-copy">
-                    <CheckCircle size="1em" color="#a3e365" weight="duotone" id="discord-check" className={`absolute ${showCopy ? 'opacity-0' : 'opacity-100'} transition duration-200`} />
-                    <CopySimple fill="#383838" weight="thin" className={`cursor-copy ${showCopy ? 'opacity-100' : 'opacity-0'} transition duration-200`} size='1em' />
+                    <CheckCircleIcon size="1em" color="#a3e365" weight="duotone" id="discord-check" className={`absolute ${showCopy ? 'opacity-0' : 'opacity-100'} transition duration-200`} />
+                    <CopySimpleIcon fill="#383838" weight="thin" className={`cursor-copy ${showCopy ? 'opacity-100' : 'opacity-0'} transition duration-200`} size='1em' />
                 </div>
             </div>
             <div className='flex items-center gap-1 cursor-pointer' onClick={handleLinkCopy}>
                 <span className='dark:text-neutral-600'>Copy link</span>
-                <ShareNetwork className='dark:fill-neutral-600' />
+                <ShareNetworkIcon className='dark:fill-neutral-600' />
             </div>
 
             <h5 className='pt-6 text-lg mb-2'>Change from</h5>

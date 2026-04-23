@@ -1,46 +1,45 @@
-import { getDictionary } from "@/app/dictionaries";
 import type { DictionaryType } from "@/app/dictionaries/en";
-import { locales } from "@/middleware";
-import { QrCode, Timer, Selection, Textbox, BookBookmark, Keyboard } from "@phosphor-icons/react/dist/ssr";
+import localeArr from "@/types/Locales";
+import { BookBookmarkIcon, KeyboardIcon, QrCodeIcon, SelectionIcon, TextboxIcon, TimerIcon } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 
-export default async function Tools({ dict, locale }: { dict: DictionaryType['tools']; locale: locales; }) {
+export default async function Tools({ dict, locale }: { dict: DictionaryType['tools']; locale: typeof localeArr[number]; }) {
     const tools = [
         {
             name: dict.qr.name,
             path: `/${locale}/tools/qr`,
             desc: dict.qr.desc,
-            file: <QrCode fill="#383838" weight="thin" className="dark:fill-neutral-500" size='5em' />
+            file: <QrCodeIcon fill="#383838" weight="thin" className="dark:fill-neutral-500" size='5em' />
         },
         {
             name: dict.tomato.name,
             path: "https://wmcmo.github.io/tomato/",
             desc: dict.tomato.desc,
-            file: <Timer fill="#383838" weight="thin" className="dark:fill-neutral-500" size='5em' />
+            file: <TimerIcon fill="#383838" weight="thin" className="dark:fill-neutral-500" size='5em' />
         },
         {
             name: dict.empchar.name,
             path: `/${locale}/tools/empchar`,
             desc: dict.empchar.desc,
-            file: <Selection fill="#383838" weight="thin" className="dark:fill-neutral-500" size='5em' />
+            file: <SelectionIcon fill="#383838" weight="thin" className="dark:fill-neutral-500" size='5em' />
         },
         {
             name: dict.charCount.name,
             path: `/${locale}/tools/char-count`,
             desc: dict.charCount.desc,
-            file: <Textbox fill="#383838" weight="thin" className="dark:fill-neutral-500" size='5em' />
+            file: <TextboxIcon fill="#383838" weight="thin" className="dark:fill-neutral-500" size='5em' />
         },
         {
             name: dict.jisho.name,
             path: "https://wmcmo.github.io/jisho-slide/",
             desc: dict.jisho.desc,
-            file: <BookBookmark fill="#383838" weight="thin" className="dark:fill-neutral-500" size='5em' />
+            file: <BookBookmarkIcon fill="#383838" weight="thin" className="dark:fill-neutral-500" size='5em' />
         },
         {
             name: "TH-EN Keys",
             path: `/${locale}/tools/th-en`,
             desc: "Forgot to change language?",
-            file: <Keyboard fill="#383838" weight="thin" className="dark:fill-neutral-500" size='5em' />
+            file: <KeyboardIcon fill="#383838" weight="thin" className="dark:fill-neutral-500" size='5em' />
         }
     ];
 
