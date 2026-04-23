@@ -1,10 +1,10 @@
+import "@/app/globals.css";
+import DictProvider from "@/providers/DictProvider";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import "@/app/globals.css";
-import Nav from "../components/Nav";
-import Footer from "../components/Footer";
-import { getDictionary } from "../dictionaries";
 import localeArr from "../../types/Locales";
+import Footer from "../components/Footer";
+import Nav from "../components/Nav";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -49,7 +49,6 @@ export default async function RootLayout({
   params: Promise<{ locale: typeof localeArr[number]; }>;
 }>) {
   const { locale } = await params;
-  const dict = await getDictionary(locale);
   return (
     <html lang={locale} className="min-h-screen">
       <head>
@@ -58,13 +57,15 @@ export default async function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap" rel="stylesheet"></link>
       </head>
       <body className={`${inter.variable} flex flex-col min-h-screen`}>
-        <Nav dict={dict.nav} locale={locale} />
-        <main id="main" className="mx-5 sm:mx-14 flex-1">
-          {children}
-        </main>
-        <div>
-          <Footer />
-        </div>
+        <DictProvider locale={locale}>
+          <Nav />
+          <main id="main" className="mx-5 sm:mx-14 flex-1">
+            {children}
+          </main>
+          <div>
+            <Footer />
+          </div>
+        </DictProvider>
       </body>
     </html>
   );

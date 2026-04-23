@@ -1,0 +1,10 @@
+"use client";
+
+import { DictContext } from "@/providers/DictProvider";
+import { useContext } from "react";
+
+export default function useDict() {
+    const context = useContext(DictContext);
+    if (!context) throw new Error("useDict must be used within DictProvider");
+    return context;
+}

@@ -15,21 +15,12 @@ export default function QrClient({ dict }: { dict: DictionaryType['qr']; }) {
 
     const handleChange = (e: { target: { value: string; name: string; }; }) => {
         const { name, value } = e.target;
-        if (value !== "") {
-            setQrForm((prevQrForm) => {
-                return {
-                    ...prevQrForm,
-                    [name]: value
-                };
-            });
-        } else {
-            setQrForm(prevQrForm => {
-                return {
-                    ...prevQrForm,
-                    [name]: name === "link" ? "https://" : "image"
-                };
-            });
-        }
+        setQrForm(prevQrForm => {
+            return {
+                ...prevQrForm,
+                [name]: value
+            };
+        });
     };
 
     const downloadQR = () => {
@@ -46,9 +37,8 @@ export default function QrClient({ dict }: { dict: DictionaryType['qr']; }) {
             <h4 className="text-xl my-4 font-bold">{dict.desc}</h4>
             <div className="flex flex-col gap-6 sm:flex-row items-center sm:mt-12 mt-10">
                 <div className="col rounded-lg flex justify-center p-1 max-h-60 max-w-60" id="qr-holder" style={{ background: qrForm.bgc }}>
-                    {/* eslint-disable-next-line jsx-a11y/alt-text */}
                     <Image
-                        text={qrForm.link}
+                        text={qrForm.link.startsWith("https://") ? qrForm.link : "https://" + qrForm.link}
                         options={{
                             type: 'image/jpeg',
                             quality: 0.3,
@@ -63,12 +53,12 @@ export default function QrClient({ dict }: { dict: DictionaryType['qr']; }) {
                         }}
                     />
                 </div >
-                <div className="col flex flex-col gap-4 item-end">
+                <div className="flex flex-col gap-4">
                     <input type="text" onChange={handleChange} name="link" value={qrForm.link}
-                        className="bg-white dark:bg-neutral-700 text-center p-4 rounded-lg hover:rounded-lg w-30" />
-                    <div className="bg-white dark:bg-neutral-700 text-center p-4 rounded-lg hover:rounded-lg flex w-30">
-                        <input type="text" onChange={handleChange} name="fileName" value={qrForm.fileName} className="bg-transparent text-right"></input>
-                        <span>.png</span>
+                        className="bg-white dark:bg-neutral-700 p-4 rounded-lg hover:rounded-lg outline-none" />
+                    <div className="bg-white dark:bg-neutral-700 text-center p-4 rounded-lg hover:rounded-lg flex">
+                        <input type="text" onChange={handleChange} name="fileName" value={qrForm.fileName} className="outline-none bg-transparent text-right"></input>
+                        <span className="font-mono font-bold">.png</span>
                     </div>
                     <div className="flex gap-2">
                         <label htmlFor="bg-color">{dict.background}</label>
@@ -76,7 +66,7 @@ export default function QrClient({ dict }: { dict: DictionaryType['qr']; }) {
                         <label htmlFor="fg-color" className="ml-4">{dict.foreground}</label>
                         <input type="color" name="fgc" id="fgc" onChange={handleChange} className="dark:bg-black rounded" value="#171717" />
                     </div>
-                    <button type="submit" onClick={downloadQR} className="bg-neutral-200 p-4 dark:bg-neutral-900 rounded mt-8 outline-1 hover:outline-offset-1">{dict.download}</button>
+                    <button type="submit" onClick={downloadQR} className="cursor-pointer bg-neutral-200 p-4 dark:bg-neutral-900 rounded mt-8 outline-1 hover:outline-offset-1">{dict.download}</button>
                 </div>
             </div>
         </main>

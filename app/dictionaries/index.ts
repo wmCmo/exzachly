@@ -1,7 +1,8 @@
-export type Locale = "en" | "ja";
+import localeArr from "@/types/Locales";
 
-// Dynamically import only the requested locale to keep bundles lean
-export async function getDictionary(locale: Locale) {
-    const dict = (await import(`./${locale}`)).default;
-    return dict;
-}
+const dictionaries = {
+    en: () => import("@/app/dictionaries/en").then((module) => module.default),
+    ja: () => import("@/app/dictionaries/ja").then((module) => module.default),
+};
+
+export const getDictionary = async (locale: typeof localeArr[number]) => await dictionaries[locale]();

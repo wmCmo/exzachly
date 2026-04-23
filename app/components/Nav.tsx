@@ -1,4 +1,5 @@
 'use client';
+import useDict from "@/hooks/useDict";
 import localeArr from "@/types/Locales";
 import { ListIcon, TranslateIcon } from "@phosphor-icons/react/dist/ssr";
 import { Montserrat } from "next/font/google";
@@ -6,13 +7,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import type { DictionaryType } from "../dictionaries/en";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
-export default function Nav({ dict, locale }: { dict: DictionaryType['nav']; locale: typeof localeArr[number]; }) {
+export default function Nav() {
     const [navShow, setNavShow] = useState(false);
-    const pages = dict.pages;
+    const { dict, locale } = useDict();
+    const pages = dict.nav.pages;
 
     const handleToggle = () => {
         setNavShow(prevNavShow => !prevNavShow);
