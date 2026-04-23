@@ -1,20 +1,17 @@
+import localeArr from "./types/Locales";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-
-const locales = ['en', 'ja'];
-export type locales = "en" | "ja";
-const defaultLocale = 'en';
 
 export function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
-    const pathnameHasLocale = locales.some(
+    const pathnameHasLocale = localeArr.some(
         (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
     );
 
     if (pathnameHasLocale) return;
 
-    request.nextUrl.pathname = `/${defaultLocale}${pathname}`;
+    request.nextUrl.pathname = `/${localeArr[0]}${pathname}`;
     return NextResponse.redirect(request.nextUrl);
 }
 

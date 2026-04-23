@@ -3,8 +3,8 @@ import { Inter } from "next/font/google";
 import "../globals.css";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
-import { locales } from "@/middleware";
 import { getDictionary } from "../dictionaries";
+import localeArr from "../../types/Locales";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -46,10 +46,10 @@ export default async function RootLayout({
   children, params
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ locale: string; }>;
+  params: Promise<{ locale: typeof localeArr[number]; }>;
 }>) {
   const { locale } = await params;
-  const dict = await getDictionary(locale as locales);
+  const dict = await getDictionary(locale);
   return (
     <html lang={locale} className="min-h-screen">
       <head>
@@ -58,7 +58,7 @@ export default async function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap" rel="stylesheet"></link>
       </head>
       <body className={`${inter.variable} flex flex-col min-h-screen`}>
-        <Nav dict={dict.nav} locale={locale as locales} />
+        <Nav dict={dict.nav} locale={locale} />
         <main id="main" className="mx-5 sm:mx-14 flex-1">
           {children}
         </main>
