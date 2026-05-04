@@ -21,9 +21,9 @@ export interface NotionItemType {
     public_url: string;
 }
 
-export default async function page({ params }: { params: Promise<{ locale: typeof localeArr[number]; }>; }) {
+export default async function page({ params }: { params: Promise<{ locale: string; }>; }) {
     const { locale } = await params;
-    const dict = await getDictionary(locale);
+    const dict = await getDictionary(locale as typeof localeArr[number]);
 
     const response = await fetch(END_POINT, options);
     const data = await response.json();

@@ -46,18 +46,19 @@ export default async function RootLayout({
   children, params
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ locale: typeof localeArr[number]; }>;
+  params: Promise<{ locale: string; }>;
 }>) {
   const { locale } = await params;
+  const typedLocale = locale as typeof localeArr[number];
   return (
-    <html lang={locale} className="min-h-screen">
+    <html lang={typedLocale} className="min-h-screen">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com"></link>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous"></link>
         <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap" rel="stylesheet"></link>
       </head>
       <body className={`${inter.variable} flex flex-col min-h-screen`}>
-        <DictProvider locale={locale}>
+        <DictProvider locale={typedLocale}>
           <Nav />
           <main id="main" className="mx-5 sm:mx-14 flex-1">
             {children}
