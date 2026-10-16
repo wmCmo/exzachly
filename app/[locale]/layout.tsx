@@ -2,7 +2,7 @@ import "@/app/globals.css";
 import DictProvider from "@/providers/DictProvider";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import localeArr from "../../types/Locales";
+import localeArr, { isLocale } from "../../types/Locales";
 import Footer from "../components/Footer";
 import Nav from "../components/Nav";
 
@@ -49,7 +49,7 @@ export default async function RootLayout({
   params: Promise<{ locale: string; }>;
 }>) {
   const { locale } = await params;
-  const typedLocale = locale as typeof localeArr[number];
+  const typedLocale = isLocale(locale) ? locale : localeArr[0];
   return (
     <html lang={typedLocale} className="min-h-screen">
       <head>
