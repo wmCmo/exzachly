@@ -4,7 +4,15 @@ const ja = {
     },
     home: {
         greeting: "ヤホウー、",
-        name: "ザカです！"
+        name: "ザカです！",
+        cube: {
+            alt: "黒いフレームのライム色のガラスキューブが、ゆっくり回りながら浮かんでいる",
+            status: "ステータス",
+            dormant: "休眠中",
+            awake: "起動中",
+            unstable: "不安定",
+            wake: "起こす"
+        }
     },
     nav: {
         pages: [['home', 'ホームページ'], ['tools', 'ツール'], ['notion', 'ノーション'], ['community', 'コミュニティ'], ['portfolio', 'ポートフォリオ'], ['about', 'プロフィール']]

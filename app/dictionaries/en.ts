@@ -4,7 +4,15 @@ const en = {
     },
     home: {
         greeting: "It's me, ",
-        name: "Zach."
+        name: "Zach.",
+        cube: {
+            alt: "A floating cube of lime glass in a black frame, turning slowly",
+            status: "Status",
+            dormant: "Dormant",
+            awake: "Awake",
+            unstable: "Unstable",
+            wake: "Wake it"
+        }
     },
     nav: {
         pages: [['home', 'home'], ['tools', 'tools'], ['notion', 'notion'], ['community', 'community'], ['portfolio', 'portfolio'], ['about', 'about']],
