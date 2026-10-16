@@ -2,23 +2,41 @@
 
 import TextArea from "@/app/components/TextArea";
 import type { DictionaryType } from "@/app/dictionaries/en";
+import useHydrated from "@/hooks/useHydrated";
 import localeArr from "@/types/Locales";
 import Link from "next/link";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useState } from "react";
 
 export interface TextAreaProps {
     file: string;
     text: string;
 }
 
-export default function CharCountClient({ dict, locale }: { dict: DictionaryType['charCount']; locale: typeof localeArr[number]; }) {
-    const emptyTextArea = { file: dict.untitled, text: '' };
-    const [text, setText] = useState<TextAreaProps[]>([emptyTextArea]);
+type CharCountProps = { dict: DictionaryType['charCount']; locale: typeof localeArr[number]; };
 
-    useEffect(() => {
+function readHistory(): TextAreaProps[] | null {
+    try {
         const stored = localStorage.getItem('history');
-        if (stored) setText(JSON.parse(stored));
-    }, []);
+        return stored ? JSON.parse(stored) : null;
+    } catch {
+        return null;
+    }
+}
+
+function Button({ main, handleClick, children }: { main: boolean; handleClick: () => void; children: ReactNode; }) {
+    return <button onClick={handleClick} className={`${main ? 'bg-lime-600 hover:bg-lime-500' : 'bg-neutral-800 hover:bg-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700'} transition-colors duration-100 py-1 text-white px-4 rounded-md font-bold`}>{children}</button>;
+}
+
+// The server can't see localStorage, so the editor first renders empty and then remounts
+// once hydrated, picking up the saved history in its initial state.
+export default function CharCountClient(props: CharCountProps) {
+    const hydrated = useHydrated();
+    return <CharCountEditor key={hydrated ? 'stored' : 'empty'} hydrated={hydrated} {...props} />;
+}
+
+function CharCountEditor({ dict, locale, hydrated }: CharCountProps & { hydrated: boolean; }) {
+    const emptyTextArea = { file: dict.untitled, text: '' };
+    const [text, setText] = useState<TextAreaProps[]>(() => (hydrated && readHistory()) || [emptyTextArea]);
 
     const handleAdd = () => {
         setText(prev => {
@@ -35,10 +53,6 @@ export default function CharCountClient({ dict, locale }: { dict: DictionaryType
     const handleReset = () => {
         setText([emptyTextArea]);
         handleSave();
-    };
-
-    const Button = ({ main, handleClick, children }: { main: boolean; handleClick: () => void; children: ReactNode; }) => {
-        return <button onClick={handleClick} className={`${main ? 'bg-lime-600 hover:bg-lime-500' : 'bg-neutral-800 hover:bg-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700'} transition-colors duration-100 py-1 text-white px-4 rounded-md font-bold`}>{children}</button>;
     };
 
     return (

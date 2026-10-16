@@ -2,8 +2,19 @@
 import Button from '@/app/components/Button';
 import { CheckCircleIcon, CopySimpleIcon, ShareNetworkIcon } from '@phosphor-icons/react/dist/ssr';
 import { useSearchParams } from 'next/navigation';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 
+const thai = '_ๅ/-ภถุึคตจขชๆไำพะัีรนยบลฟหกดเ้่าสวงฃผปแอิืทมใฝ%+๑๒๓๔ู฿๕๖๗๘๙๐"ฎฑธํ๊ณฯญฐ,ฤฆฏโฌ็๋ษศซ.ฅ()ฉฮฺ์?ฒฬฦ';
+const eng = '`1234567890-=qwertyuiop[]asdfghjkl;\'\\zxcvbnm,./~!@#$%^&*()_+QWERTYUIOP{}ASDFGHJKL:"|ZXCVBNM<>?';
+
+// Swap each character for the one on the same key of the other keyboard layout.
+function change(text: string, from: string): string {
+    const [source, target] = from === 'th' ? [thai, eng] : [eng, thai];
+    return Array.from(text, char => {
+        const index = source.indexOf(char);
+        return index === -1 ? char : target[index];
+    }).join('');
+}
 
 export default function KeyChangeUI() {
     const searchParams = useSearchParams();
@@ -16,36 +27,6 @@ export default function KeyChangeUI() {
     const [input, setInput] = useState(toString(searchParams.get('input') || 'e0b984e0b897e0b981e0b897e0b899') || 'ไทแทน');
     const [showCopy, setShowCopy] = useState(true);
     const [showLinkCopy, setShowLinkCopy] = useState(false);
-
-    const thai = '_ๅ/-ภถุึคตจขชๆไำพะัีรนยบลฟหกดเ้่าสวงฃผปแอิืทมใฝ%+๑๒๓๔ู฿๕๖๗๘๙๐"ฎฑธํ๊ณฯญฐ,ฤฆฏโฌ็๋ษศซ.ฅ()ฉฮฺ์?ฒฬฦ';
-    const eng = '`1234567890-=qwertyuiop[]asdfghjkl;\'\\zxcvbnm,./~!@#$%^&*()_+QWERTYUIOP{}ASDFGHJKL:"|ZXCVBNM<>?';
-
-    const change = useCallback((text: string): string => {
-        if (!text) return "";
-        if (text.length === 1) {
-            if (from === "th") {
-                const index = thai.indexOf(text);
-                if (index === -1) {
-                    return text;
-                }
-                else {
-                    return eng[index];
-                }
-            } else if (from === "en") {
-                const index = eng.indexOf(text);
-                if (index === -1) {
-                    return text;
-                } else {
-                    return thai[index];
-                }
-            }
-        } else {
-            return change(text[0]) + change(text.substring(1));
-        }
-        return "";
-    }, [from]);
-
-    // const result = useMemo(() => change(input), [input, change]);
 
     const handleCopy = () => {
         navigator.clipboard.writeText('wmcmo');
@@ -80,7 +61,7 @@ export default function KeyChangeUI() {
             <h4 className="text-2xl my-4">Forgot to change the language? We&apos;re here to help 😉</h4>
             <h5 className='pt-6 text-lg'>Output</h5>
             <div className='bg-neutral-200 dark:bg-neutral-900 pl-8 py-4 rounded-lg text-4xl flex justify-between pr-4'>
-                <span>{change(input)}</span>
+                <span>{change(input, from)}</span>
                 <div id="discord" onClick={handleCopy} className="relative z-10 hover:cursor-copy">
                     <CheckCircleIcon size="1em" color="#a3e365" weight="duotone" id="discord-check" className={`absolute ${showCopy ? 'opacity-0' : 'opacity-100'} transition duration-200`} />
                     <CopySimpleIcon fill="#383838" weight="thin" className={`cursor-copy ${showCopy ? 'opacity-100' : 'opacity-0'} transition duration-200`} size='1em' />

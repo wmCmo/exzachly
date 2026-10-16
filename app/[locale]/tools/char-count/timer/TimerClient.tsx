@@ -1,7 +1,7 @@
 "use client";
 
 import type { DictionaryType } from '@/app/dictionaries/en';
-import { defaultRecord } from '@/utils/defaultRecord';
+import useStoredRecord, { saveRecord } from '@/hooks/useStoredRecord';
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -10,9 +10,10 @@ export type RecordMap = { ja: number; en: number; };
 export default function TimerClient({ dict, locale }: { dict: DictionaryType; locale: keyof RecordMap; }) {
     const [start, setStart] = useState(false);
     const [second, setSecond] = useState(0);
-    const [record, setRecord] = useState(defaultRecord);
+    const record = useStoredRecord();
 
     const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+    const secondRef = useRef(0);
 
     const clearTimer = useCallback(() => {
         if (timerRef.current) {
@@ -21,53 +22,30 @@ export default function TimerClient({ dict, locale }: { dict: DictionaryType; lo
         }
     }, []);
 
-    useEffect(() => {
-        try {
-            const raw = localStorage.getItem('record');
-            if (raw) {
-                const parsed = JSON.parse(raw) as Partial<RecordMap>;
-                setRecord(prev => ({ ...prev, ...parsed }));
-            }
-        } catch (e) {
-            console.error(e);
-        }
-    }, []);
+    const stopAndSave = useCallback((at: number) => {
+        clearTimer();
+        setStart(false);
+        saveRecord({ [locale]: at });
+    }, [clearTimer, locale]);
 
     useEffect(() => {
         if (start && !timerRef.current) {
             timerRef.current = setInterval(() => {
-                setSecond(prev => prev + 1);
+                secondRef.current += 1;
+                setSecond(secondRef.current);
+                if (secondRef.current >= 300) stopAndSave(secondRef.current);
             }, 1000);
         }
 
         return () => {
             clearTimer();
         };
-    }, [start, clearTimer]);
-
-    useEffect(() => {
-        if (start && second >= 300) {
-            stopAndSave();
-        }
-    }, [second, start]);
-
-    const stopAndSave = () => {
-        clearTimer();
-        setStart(false);
-        setRecord(prev => {
-            const next = { ...prev, [locale]: second } as RecordMap;
-            try {
-                localStorage.setItem('record', JSON.stringify(next));
-            } catch (e) {
-                console.error(e);
-            }
-            return next;
-        });
-    };
+    }, [start, clearTimer, stopAndSave]);
 
     function resetTime() {
         setStart(false);
         setSecond(0);
+        secondRef.current = 0;
         clearTimer();
     }
 
@@ -92,7 +70,7 @@ export default function TimerClient({ dict, locale }: { dict: DictionaryType; lo
                             ? resetTime
                             : () => {
                                 if (start) {
-                                    stopAndSave();
+                                    stopAndSave(second);
                                 } else {
                                     setStart(true);
                                 }

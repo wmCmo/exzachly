@@ -1,10 +1,9 @@
 'use client';
 import localeArr from '@/types/Locales';
-import { defaultRecord } from '@/utils/defaultRecord';
 import { PlusCircleIcon, StopCircleIcon, XCircleIcon } from '@phosphor-icons/react/dist/ssr';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import useStoredRecord from '@/hooks/useStoredRecord';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { TextAreaProps } from '../[locale]/tools/char-count/CharCountClient';
-import { RecordMap } from '../[locale]/tools/char-count/timer/TimerClient';
 import type { DictionaryType } from '../dictionaries/en';
 
 export default function TextArea({ unique, value, text, setText, dict, locale }: { unique: number; value: TextAreaProps; text: TextAreaProps[]; setText: Dispatch<SetStateAction<TextAreaProps[]>>; dict: DictionaryType['charCount']; locale: typeof localeArr[number]; }) {
@@ -12,22 +11,7 @@ export default function TextArea({ unique, value, text, setText, dict, locale }:
     const [selectedText, setSelectedText] = useState(0);
     const [countChar, setCountChar] = useState(false);
     const [speech, setSpeech] = useState(false);
-    const [record, setRecord] = useState(defaultRecord);
-
-    useEffect(() => {
-        if (window === undefined) return;
-        else {
-            try {
-                const raw = localStorage.getItem('record');
-                if (raw) {
-                    const parsed = JSON.parse(raw) as Partial<RecordMap>;
-                    setRecord(prev => ({ ...prev, ...parsed }));
-                }
-            } catch (e) {
-                console.error('Could not load data from localStorage', e);
-            }
-        }
-    }, []);
+    const record = useStoredRecord();
 
     const handleChange = (e: { target: { value: string; name: string; }; }) => {
         const value = e.target.value;
