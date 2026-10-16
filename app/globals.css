@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  /* Page headings: 15vw on phones, fixed sizes from sm: up */
+  --text-vw: 15vw;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
