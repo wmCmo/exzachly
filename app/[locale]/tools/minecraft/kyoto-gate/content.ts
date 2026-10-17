@@ -21,7 +21,7 @@ const en = {
         lead: "Plant one torii, and a Kyoto town grows out of it, across whatever terrain is there.",
         body: "Streets, houses, gardens, shrines and a five-storey pagoda. No building by hand: everything in the picture above grew by itself from a single gate.",
         download: "Download",
-        meta: "Java Edition 26.3 · 268 KB",
+        meta: "Java Edition 26.3 · latest release",
     },
     origin: {
         kicker: "Where it came from",
@@ -182,7 +182,7 @@ const ja: Content = {
         lead: "鳥居をひとつ置くと、そこから京都の町が育っていく。どんな地形の上にも。",
         body: "道、町家、庭、祠、そして五重塔。手で建てたものはひとつもありません。上の町はすべて、ひとつの鳥居から自然に育ちました。",
         download: "ダウンロード",
-        meta: "Java Edition 26.3 · 268 KB",
+        meta: "Java Edition 26.3 · 最新リリース",
     },
     origin: {
         kicker: "はじまり",

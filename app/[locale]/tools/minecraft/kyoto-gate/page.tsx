@@ -12,7 +12,8 @@ const serif = Shippori_Mincho_B1({ weight: ["500", "700", "800"], subsets: ["lat
 const sans = Zen_Kaku_Gothic_New({ weight: ["400", "500", "700"], subsets: ["latin"], variable: "--kg-sans", preload: false });
 
 const BASE = "/minecraft/kyoto-gate";
-const ZIP = `${BASE}/kyoto_gate.zip`;
+// served by GitHub Releases (built by kyoto-gate's release workflow), so no binary lives in this repo
+const ZIP = "https://github.com/wmCmo/kyoto-gate/releases/latest/download/kyoto_gate.zip";
 
 // [width, height] of every image in public/minecraft/kyoto-gate
 const SIZES: Record<string, [number, number]> = {
