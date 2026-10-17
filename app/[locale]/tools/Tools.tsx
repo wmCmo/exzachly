@@ -1,6 +1,6 @@
 import type { DictionaryType } from "@/app/dictionaries/en";
 import localeArr from "@/types/Locales";
-import { BookBookmarkIcon, KeyboardIcon, QrCodeIcon, SelectionIcon, TextboxIcon, TimerIcon, UserSoundIcon } from "@phosphor-icons/react/dist/ssr";
+import { BookBookmarkIcon, CubeIcon, KeyboardIcon, QrCodeIcon, SelectionIcon, TextboxIcon, TimerIcon, UserSoundIcon } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 
 export default async function Tools({ dict, locale }: { dict: DictionaryType['tools']; locale: typeof localeArr[number]; }) {
@@ -46,6 +46,12 @@ export default async function Tools({ dict, locale }: { dict: DictionaryType['to
             path: `/${locale}/tools/suzuki-san`,
             desc: "Improve your Japanese pitch accent",
             file: <UserSoundIcon fill="#383838" weight="thin" className="dark:fill-neutral-500" size={'5em'} />
+        },
+        {
+            name: "Minecraft",
+            path: `/${locale}/tools/minecraft`,
+            desc: locale === "ja" ? "自作のデータパック" : "Data packs from my worlds",
+            file: <CubeIcon fill="#383838" weight="thin" className="dark:fill-neutral-500" size={'5em'} />
         }
     ];
 
